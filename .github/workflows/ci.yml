@@ -1,0 +1,28 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  formula:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@master
+      - uses: actions/checkout@v4
+      - name: tap this checkout
+        run: |
+          tap="$(brew --repository)/Library/Taps/pez2001/homebrew-pytermwm"
+          mkdir -p "$(dirname "$tap")" && rm -rf "$tap" && ln -s "$GITHUB_WORKSPACE" "$tap"
+      - run: brew install --verbose pez2001/pytermwm/pytermwm
+      - run: brew test --verbose pez2001/pytermwm/pytermwm
+      - run: brew audit --strict --online pez2001/pytermwm/pytermwm
