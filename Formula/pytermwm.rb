@@ -3,8 +3,8 @@ class Pytermwm < Formula
 
   desc "Terminal window manager in pure Python, driven by keys, CLI, HTTP and MCP"
   homepage "https://github.com/pez2001/pytermwm"
-  url "https://files.pythonhosted.org/packages/50/0a/c45d012673d6274dcca0c5c4d995f3820550b859dc365915dd989de8e7a4/pytermwm-1.0.1.tar.gz"
-  sha256 "c546818e81f97e9cc67bf31c166cf435309395aad7035142b3471ecaf44efaca"
+  url "https://files.pythonhosted.org/packages/f8/ba/2f8b140ec102599001cc2995573da1750d86710795a5c77ae4cc51f677d7/pytermwm-1.0.2.tar.gz"
+  sha256 "893ecaf8f607281ae17feb5eac2698fda9c2cf1fc84fe1ef4fb9b759e3fc2326"
   license "LGPL-2.1-or-later"
 
   depends_on "libyaml"
